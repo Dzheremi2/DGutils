@@ -1,0 +1,28 @@
+[project]
+name = "dgutils"
+version = "0.1.0"
+description = "A GTK apps develompment easement"
+authors = [
+    { name="Dzheremi", email="chichvarov1315@gmail.com" }
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.9"
+
+dependencies = [
+    "PyGObject>=3.42",
+    "PyYAML>=5.3",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/dzheremi2/dgutils"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
