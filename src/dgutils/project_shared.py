@@ -33,10 +33,12 @@ def validate_schema(data: dict, schema_def: dict) -> tuple[dict, bool]:
         default = rule.get("default")
         value = data.get(key, default)
 
-        pytype = {"int": int, "str": str, "bool": bool}.get(expected_type, str)
+        pytype = {"int": int, "str": str, "bool": bool, "float": float}.get(
+            expected_type, str
+        )
         valid = isinstance(value, pytype)
 
-        if expected_type == "int":
+        if expected_type in ("int", "float"):
             if "min" in rule and value < rule["min"]:
                 valid = False
             if "max" in rule and value > rule["max"]:
@@ -136,6 +138,11 @@ class ProjectShared:
                     self._save()
                     self.emit("changed", key, value)
 
+            def _set(self, key, value):
+                if self._data.get(key) != value:
+                    self._data[key] = value
+                    self._save()
+
             def _save(self):
                 with self._file.open("w+", encoding="utf-8") as f:
                     json.dump(self._data, f, indent=2)
@@ -161,7 +168,7 @@ class ProjectShared:
                 self.connect("changed", on_changed)
 
                 def on_widget_change(w, _):
-                    self.set(key, w.get_property(prop))
+                    self._set(key, w.get_property(prop))
 
                 gobject.connect(f"notify::{prop}", on_widget_change)
 
