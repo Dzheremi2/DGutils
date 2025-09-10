@@ -1,2 +1,0 @@
-PyGObject>=3.42
-PyYAML>=5.3
