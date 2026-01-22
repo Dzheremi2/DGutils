@@ -6,7 +6,7 @@
     },
     "search.followSymlinks": false,
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": "explicit"
@@ -22,5 +22,11 @@
     "pylint.enabled": true,
     "mesonbuild.configureOnOpen": false,
     "mesonbuild.buildFolder": "_build",
-    "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh"
+    "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh",
+    "[xml]": {
+        "editor.rulers": [90] // Just for text, like in descriptions, ignore for links, tags, e.t.c
+    },
+    "[markdown]": {
+        "editor.rulers": [90] // Just for text, ignore for links, tags, e.t.c
+    },
 }
